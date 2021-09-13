@@ -1,0 +1,34 @@
+"""
+import math
+
+def foo(num, base):
+    if num >= base:
+        foo(num // base, base)
+    print(num % base, end=' ')
+
+foo(126, 2)
+
+
+print(round(35.8),abs(35.8),int(35.8),math.floor(35.8))
+
+import random
+print(random.choice(['霸道总裁风', '冷艳高贵风', '扎心了老铁风', '人来风']))
+
+n = int(input())
+s = term = 1
+
+for i in range(2, n + 1):
+	term *= i
+	s += term
+print(s)
+"""
+
+def proc(n):
+    if n<0:
+        print('-', end = '')
+        n = -n
+    if n // 10:
+        proc(n // 10 )
+    print(n % 10, end = '')
+
+print(i for i in range(2,2))
