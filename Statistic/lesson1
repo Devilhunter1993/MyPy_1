@@ -22,13 +22,27 @@ for i in range(2, n + 1):
 	s += term
 print(s)
 """
+# -*- coding: utf-8 -*-
+"""
+Crawler
 
-def proc(n):
-    if n<0:
-        print('-', end = '')
-        n = -n
-    if n // 10:
-        proc(n // 10 )
-    print(n % 10, end = '')
+@author: Dazhuang
+"""
+import requests
+from bs4 import BeautifulSoup
+import re
 
-print(i for i in range(2,2))
+s = 0
+# 网站最新更新需要添加headers属性才能正常获取源码
+headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36'}
+r = requests.get('https://book.douban.com/subject/35556892/comments/', headers=headers)
+print(r.status_code)
+soup = BeautifulSoup(r.text, 'lxml')
+pattern = soup.find_all('span', 'short')
+for item in pattern:
+    print(item.string)
+pattern_s = re.compile('<span class="user-stars allstar(.*?) rating"')
+p = re.findall(pattern_s, r.text)
+for star in p:
+    s += int(star)
+print(s)
